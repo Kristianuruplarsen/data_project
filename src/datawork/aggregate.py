@@ -3,6 +3,26 @@ import re
 import pandas as pd 
 
 
+def get_journals(name):
+    """ Get the journals in which an author has published. 
+    
+    Params 
+    ------
+        name(str): name of author
+    
+    Returns 
+    -------
+        list
+    """
+    name = ''.join(re.findall('[A-Za-z]+', name))
+    try:
+        author_data = pd.read_csv(f'data/authorsWork/{name}.csv')
+    except:
+        return list()    
+    return list(set(author_data.journal_name))
+
+
+
 def get_coauthors(name):
     """ Get all coauthors of an author by name. 
     This function is intended to be used with .apply on a 
@@ -67,7 +87,7 @@ def clean_authors(authorstring):
     names = list()
     for author in authorlist:
         
-        authorName = ''.join(re.findall('[A-Za-z\s]*', author)).strip()
+        authorName = ''.join(re.findall('[A-Za-z\s]*', author)).strip().lower()
         anames = set(authorName.split(' '))
         
         names.append(anames)
