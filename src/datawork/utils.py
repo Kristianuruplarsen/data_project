@@ -2,7 +2,6 @@
 from bs4 import BeautifulSoup
 
 
-
 def removeParenthesis(s):
     """ Remove parentheses from a string.
 

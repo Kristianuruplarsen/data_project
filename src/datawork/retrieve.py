@@ -1,10 +1,15 @@
 
+"""
+Functions for downloading data from Ideas.
+"""
+
 import requests 
 import pandas as pd 
 import os 
 from bs4 import BeautifulSoup
 
 from .utils import * 
+
 
 
 def cached(func, path, *scraper_args):
